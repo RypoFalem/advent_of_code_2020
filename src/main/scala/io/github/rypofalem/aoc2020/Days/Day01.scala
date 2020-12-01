@@ -6,7 +6,6 @@ object Day01 extends Problem {
   override def uid: Int = 1
 
   private val nums = lines map (_.toInt)
-  private val lazyIndices = nums.indices.to(LazyList)
 
   def generalSolution(nums: List[Int], entries: Int, targetSum: Int): List[List[Int]] = {
     val sortedNums = nums.sorted
