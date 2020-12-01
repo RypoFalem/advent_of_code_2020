@@ -1,3 +1,10 @@
-.bsp/*
-.idea/*
-./project/target/*
+*.iml
+*.ipr
+*.iws
+.idea
+out
+*.sc
+*.class
+*.log
+target
+/.bsp
