@@ -4,11 +4,9 @@ import io.github.rypofalem.aoc2020.Problem
 
 object Day01 extends Problem {
   override def uid: Int = 1
-
-  private val nums = lines map (_.toInt)
+  lazy val nums: List[Int] = lines map (_.toInt)
 
   def generalSolution(nums: List[Int], entries: Int, targetSum: Int): List[List[Int]] = {
-    val sortedNums = nums.toVector.sorted
     def partialSolution(entries: Int, accr: List[List[Int]], numsPicked: List[Int], numsLeft: Vector[Int]): List[List[Int]] = {
       // base case: if it's successful, add it to accr otherwise just return accr
       if(entries < 1) if(numsPicked.sum == targetSum) numsPicked :: accr else accr
@@ -33,7 +31,7 @@ object Day01 extends Problem {
         solutions ++: accr
       }
     }
-    partialSolution(entries, List(), List(), sortedNums)
+    partialSolution(entries, List(), List(), nums.toVector.sorted)
   }
 
   def s1: List[List[Int]] = generalSolution(nums, 2, 2020) // List(List(1412, 608))
@@ -41,4 +39,6 @@ object Day01 extends Problem {
 
   override def solution1: String = s"The product of the two numbers that add to 2020 is ${s1.head.product}"
   override def solution2: String = s"The product of the three numbers that add to 2020 is ${s2.head.product}"
+
+  def main(args: Array[String]): Unit = println(toString)
 }
