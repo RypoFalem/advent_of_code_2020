@@ -6,5 +6,6 @@ out
 *.sc
 *.class
 *.log
+*.practice
 target
 /.bsp
