@@ -7,9 +7,9 @@ object Day02 extends Problem{
   val pws: List[PasswordSetting] = lines map PasswordSetting.fromString
 
   object PasswordSetting{
-    private val regex = raw"(\d+)-(\d+) (\w): (.*)".r
+    private val settingsPattern = raw"(\d+)-(\d+) (\w): (.*)".r
     def fromString(line: String): PasswordSetting = line match {
-      case regex(min, max, char, pw) => PasswordSetting(min.toInt, max.toInt, char.charAt(0), pw)
+      case settingsPattern(min, max, char, pw) => PasswordSetting(min.toInt, max.toInt, char.charAt(0), pw)
     }
   }
 
@@ -21,8 +21,7 @@ object Day02 extends Problem{
     lazy val valid2: Boolean = (pw(min - 1) == char) ^ (pw(max - 1) == char)
   }
 
+  override def solution1: String = s"valid passwords type1: ${pws.count(_.valid1)}"
 
-  override def solution1: String = s"matching passwords: ${pws.count(_.valid1).toString}"
-
-  override def solution2: String = s"matching passwords: ${pws.count(_.valid2).toString}"
+  override def solution2: String = s"valid passwords type2: ${pws.count(_.valid2)}"
 }
