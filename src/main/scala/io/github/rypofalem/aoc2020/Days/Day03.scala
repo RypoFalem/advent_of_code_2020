@@ -2,7 +2,7 @@ package io.github.rypofalem.aoc2020.Days
 
 import io.github.rypofalem.aoc2020.Problem
 
-object Day03 extends Problem{
+object Day03 extends Problem {
   override def uid: Int = 3
   lazy val terrain: Vector[String] = lines.toVector
   val tree: Char = '#'
@@ -19,8 +19,7 @@ object Day03 extends Problem{
   }
 
   override def solution2: String = {
-    val product = BigInt(calcCollisions(1,1)) * calcCollisions(1,3) *
-      calcCollisions(1,5) * calcCollisions(1,7) * calcCollisions(2,1)
+    val product = (List((1,1), (1,3), (1,5), (1,7), (2,1)) map {case (d,r) => BigInt(calcCollisions(d,r))}).product
     s"product of collisions on all paths is $product"
   }
 
