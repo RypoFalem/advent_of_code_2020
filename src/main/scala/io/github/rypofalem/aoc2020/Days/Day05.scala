@@ -13,12 +13,13 @@ object Day05 extends Problem{
   override def solution1: String = s"Highest seat ID: ${seats.max}"
 
   override def solution2: String = {
-    val sorted = seats.sorted
+    val sorted = seats.sorted.to(LazyList)
     val first = sorted.head
     // example case where first = 30
-    // 0  1  2  3  < index
-    // 30 31 32 34 < value (34 is the first to skip, meaning 33 is my seat)
-    val seat = sorted.zipWithIndex.find{ case (pass, index) => pass - first != index }.get._1 - 1
+    // 30 31 32 34 <- pass
+    // 0  1  2  3  <- index
+    // 30 30 30 31  <- {pass - index} 34 is the first to skip (34 - index != first), meaning 33 is my seat
+    val seat = sorted.zipWithIndex.find{ case (pass, index) => pass - index != first }.get._1 - 1
     s"My seat is $seat"
   }
 
