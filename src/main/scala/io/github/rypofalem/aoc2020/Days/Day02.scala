@@ -23,5 +23,4 @@ object Day02 extends Problem {
 
   override def solution1: String = s"valid passwords type1: ${pws.count(_.valid1)}"
   override def solution2: String = s"valid passwords type2: ${pws.count(_.valid2)}"
-  def main(args: Array[String]): Unit = println(toString)
 }

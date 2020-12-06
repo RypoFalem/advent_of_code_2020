@@ -120,7 +120,4 @@ object Day04 extends Problem {
     val count = passports count validate2
     s"There are $count 'valid' passports"
   }
-
-
-  def main(args:Array[String]): Unit = println(toString)
 }

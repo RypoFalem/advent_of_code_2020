@@ -22,6 +22,4 @@ object Day03 extends Problem {
     val product = (List((1,1), (1,3), (1,5), (1,7), (2,1)) map {case (d,r) => BigInt(calcCollisions(d,r))}).product
     s"product of collisions on all paths is $product"
   }
-
-  def main(args:Array[String]): Unit = println(toString)
 }

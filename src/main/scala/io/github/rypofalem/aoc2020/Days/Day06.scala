@@ -4,7 +4,7 @@ import io.github.rypofalem.aoc2020.Problem
 
 object Day06 extends Problem{
   override def uid: Int = 6
-  val groups: Array[String] = lines.mkString("\n").split("\n\n")
+  lazy val groups: Array[String] = lines.mkString("\n").split("\n\n")
 
   lazy val countYes: Array[Int] = {
     def uniqueLetters(str: String): Int = str.toSet.count(_.isLetter)
@@ -18,8 +18,5 @@ object Day06 extends Problem{
   }
 
   override def solution1: String = s"The sum of all unique yes's in all groups is ${countYes.sum}"
-
   override def solution2: String = s"The sum of all unique unanimous yes's in all groups is ${countAllYes.sum}"
-
-  def main(args: Array[String]): Unit = println(toString)
 }

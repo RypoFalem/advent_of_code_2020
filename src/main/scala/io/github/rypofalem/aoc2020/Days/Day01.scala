@@ -39,6 +39,4 @@ object Day01 extends Problem {
 
   override def solution1: String = s"The product of the two numbers that add to 2020 is ${s1.head.product}"
   override def solution2: String = s"The product of the three numbers that add to 2020 is ${s2.head.product}"
-
-  def main(args: Array[String]): Unit = println(toString)
 }

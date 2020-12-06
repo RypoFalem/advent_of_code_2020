@@ -22,6 +22,4 @@ object Day05 extends Problem{
     val seat = sorted.zipWithIndex.find{ case (pass, index) => pass - index != first }.get._1 - 1
     s"My seat is $seat"
   }
-
-  def main(args:Array[String]): Unit = println(toString)
 }
