@@ -2,7 +2,6 @@ package io.github.rypofalem.aoc2020.Days
 
 import io.github.rypofalem.aoc2020.Problem
 
-import scala.annotation.nowarn
 import scala.util.matching.Regex
 import scala.util.parsing.combinator.JavaTokenParsers
 
@@ -41,7 +40,6 @@ object Day07 extends Problem{
       val newColors = containers.keySet diff seen
       if(newColors.isEmpty) seen
       else newColors flatMap (sub(_, seen ++ newColors))
-
     }
     sub(color, Set())
   }
@@ -73,7 +71,7 @@ object Day07 extends Problem{
   }
 
   override def solution1: String = {
-    val n = bagsThatCanContain("shiny gold").size.toString
+    val n = bagsThatCanContain("shiny gold").size
     s"There are $n bags that can contain shiny gold bags"
   }
 
