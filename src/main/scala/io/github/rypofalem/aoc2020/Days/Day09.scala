@@ -12,25 +12,20 @@ object Day09 extends Problem{
   val preamble: Int = 25
   val targetSum: Long = 18272118
 
-  def isValid(index: Int): Boolean = {
-    (for {
-      x <- (index - preamble) until index
-      y <- (index - preamble) until index
-      if x != y
-      if nums(x) + nums(y) == nums(index)
-    } yield (x, y)).nonEmpty
-
-  }
-
   override def solution1: String = {
-    val n = nums.zipWithIndex.splitAt(25)._2.
-      find({ case (n, index) => !isValid(index) }).get._1
-    s"the first invalid number is $n"
+    def isValid(index: Int): Boolean =
+      ((index - preamble) until index).exists { x =>
+        ((index - preamble) until index).exists { y =>
+          x != y && nums(x) + nums(y) == nums(index)
+        }
+      }
+    val index = (preamble until nums.length).find(!isValid(_)).get
+    s"the first invalid number is ${nums(index)}"
   }
 
   override def solution2: String = {
     @tailrec
-    def loop(nums: List[Long], accum: mutable.Queue[Long]): Seq[Long] ={
+    def loop(nums: List[Long], accum: mutable.Queue[Long]): Seq[Long] =
       if(accum.sum == targetSum) accum.toIndexedSeq
       else if(nums.isEmpty) throw new IllegalStateException("Solution not found")
       else {
@@ -38,7 +33,6 @@ object Day09 extends Problem{
         accum.dequeueWhile(_ => accum.sum > targetSum)
         loop(nums.tail, accum)
       }
-    }
     val xs = loop(nums.toList, mutable.Queue())
     val weakness = xs.min + xs.max
     s"The weakness is $weakness"
